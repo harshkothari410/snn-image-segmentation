@@ -14,8 +14,16 @@ def imageread(filename):
 
 	for x in xrange(h):
 		for y in xrange(w):
-			pixel_mat[x][y] = pixel_values[count]
-			count+=1
+			# print type(pixel_values[count])
+			try:
+				if len( pixel_values[count] ) > 1:
+					pixel_mat[x][y] = pixel_values[count][0] #check whether is 
+				else:
+					pixel_mat[x][y] = pixel_values[count]
+				count+=1
+			except:
+				pixel_mat[x][y] = pixel_values[count]
+				count+=1
 
 	return pixel_mat, w, h
 
