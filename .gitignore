@@ -1,2 +1,7 @@
 *.pyc
 .DS_Store
+*.jpg
+*.jpeg
+*.ttf
+*.bmp
+*.png
