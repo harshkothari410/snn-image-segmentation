@@ -78,7 +78,7 @@ def fitness_weight(population, w, h, t, ind):
 	return fitness_dict
 
 # read image
-pixel, w, h = imageread('test1.jpg')
+pixel, w, h = imageread('test8.jpg')
 
 # convert to snn
 pixel_mat = snn_response(pixel, w, h, 10, 0.05)
@@ -134,11 +134,11 @@ def median_filter(mat, w, h):
 
 # ==================== SNN Matrix ====================
 print "Starting GA ..."
-population1 = init_mat(8,w,h)
+population1 = init_mat(10,w,h)
 print "Population created ..."
 t = 5.0
 final = []
-for x in xrange(6):
+for x in xrange(16):
 	print "Performing Iteration :", x+1
 	sl = []
 	for pop in population1:
@@ -152,12 +152,14 @@ for x in xrange(6):
 
 	sl = second_layer(m)
 	ans = convert_binary(sl, w, h, t)
-	final = ans
+	final = sl
+	if x % 4 == 0:
+		imagesave(ans, w, h, 't6test8gen ' + str(x) + ' fit ' )
 	imagewrite(ans, w, h)
-print len(final)
-x = median_filter(final, w, h)
-print 'shannon entropy : ',shenon_entropy( x , w, h) 
-imagewrite(x, w, h)
+# print len(final)
+# x = median_filter(final, w, h)
+# print 'shannon entropy : ',shenon_entropy( x , w, h) 
+# imagewrite(x, w, h)
 	# if x % 5 == 0:
 	# 	# ans = convert_mat(pixel_mat, w, h, m)
 	# 	imagesave(ans, w, h, 'gen ' + str(x) + ' fit ' )
